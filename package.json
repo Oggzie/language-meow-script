@@ -5,7 +5,9 @@
   "keywords": [],
   "license": "MIT",
   "main": "./lib/language-meow-script",
-  "repository": {},
+  "repository": {
+    "url": "https://github.com/Oggzie/language-meow-script"
+  },
   "dependencies": {},
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
