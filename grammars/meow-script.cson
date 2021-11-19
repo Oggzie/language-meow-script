@@ -1,0 +1,84 @@
+# TextMate tutorial: http://manual.macromates.com/en/language_grammars
+
+# Regex to convert keys to unquoted: '(include|match|captures|begin|end|beginCaptures|endCaptures|name|patterns|0|1|2|3|4|5|6|7|8|9|comment|fileTypes|scopeName|repository|contentName|firstLineMatch|foldingStartMarker|foldingStopMarker)':
+
+scopeName: 'source.meows' # <scope> should be a short, unique indicator for the language ("js", "php", "c", etc.)
+name: 'Meow Script' # The title that will show up in grammar selection and on your status bar.
+fileTypes: [ # An array of file extensions.
+  'm3.txt'
+  'meows'
+]
+firstLineMatch: '' # A regular expression that is matched against the first line of the document when Atom is trying to decide if the grammar is appropriate. Useful for shell scripts, mostly.
+foldingStartMarker: '\\b(config|define|setup|content|finish)\\b' # A regular expression that checks for the start of a foldable area (such as `{`).
+foldingStopMarker: '\\bend\\b' # A regular expression that checks for the end of a foldable area (such as `}`). If both folding markers are matched in the same line, there will be no foldable area.
+patterns: [ # An array of individual pattern declarations.
+  {
+    match: '#(?=(?:[^"]*"[^"]*")*[^"]*$).*$'
+    name: 'comment.line.number-sign'
+  }
+  { # quoted string
+    begin: '\"' # A regular expression that precedes the content. Optional.
+    end: '\"' # A regular expression that follows the content. Optional.
+    name: 'string.quoted.double' # A period-delimited list of classes that will be applied to the content identified by
+  }
+  { # number
+    match: '\\b[+-]?([0-9]*[.])?[0-9]+\\b'
+    name: 'constant.numeric'
+  }
+  {
+    begin: '\\bconfig\\b'
+    end: '\\bend\\b'
+    captures:
+        0:
+          name: 'keyword.operator'
+    patterns: [
+      {
+        match: '\\b(version|id|name|cost|image|triggers|position|campos|camzoom)\\b'
+        name: 'entity.name.type'
+      }
+      {
+        include: '$self'
+      }
+    ]
+  }
+  {
+    begin: '\\bdefine\\b'
+    end: '\\bend\\b'
+    captures:
+        0:
+          name: 'keyword.operator'
+    patterns: [
+      {
+        match: '^\\s*(\\b[a-z0-9]+\\b)'
+        name: 'variable.language'
+      }
+      {
+        match: '.+'
+        name: 'string.quoted.double'
+      }
+      {
+        include: '$self'
+      }
+    ]
+  }
+
+  {
+    match: '\\b(define|setup|content|finish|end)\\b'
+    name: 'keyword.control' # A period-delimited list of classes that will be applied to the content identified by
+  }
+  {
+    match: '\\b(show|talk|zoom|move|hide|movd|pause|show_fade|hide_fade|show_hide_fade|move_delta|talk_only|rotate|opacity|scale|walk|play_anim)\\b'
+    name: 'entity.name.function'
+  }
+
+]
+repository: # An array of rules. If you're going to be referencing one bit of code over and over again, stick it here so that you can edit all in one place.
+  ruleName: # Can be anything.
+    {
+      name: ''
+      match: ''
+      end: ''
+      endCaptures:
+        0:
+          name: ''
+    }

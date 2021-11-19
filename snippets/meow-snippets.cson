@@ -1,0 +1,100 @@
+'.source.meows':
+  'talk without animation':
+    prefix: 'talko'
+    body: 'talk_only ${1:object} "${2:dialogue}"'
+
+  'talk':
+    prefix: 'talk'
+    body: 'talk ${1:object} "${2:dialogue}"'
+
+  'move':
+    prefix: 'move'
+    body: 'move ${1:object} ($2, $3) ${4:duration}'
+
+  'move with walk animation':
+    prefix: 'walk'
+    body: 'walk ${1:object} ($2, $3) ${4:duration}'
+
+  'move delta position':
+    prefix: 'movd'
+    body: 'move_delta ${1:object} ($2, $3) ${4:duration}'
+
+  'zoom':
+    prefix: 'zoom'
+    body: 'zoom ${1:new_zoom} ${2:duration}'
+
+  'show':
+    prefix: 'show'
+    body: 'show ${1:object} (${3:0}, ${4:0})'
+
+  'show with extra parameters':
+    prefix: 'showex'
+    body: 'show ${1:object}/${2:anim_name} (${3:0}, ${4:0}) ${5:opacity} (${6:scale_x}, ${7:scale_y})'
+
+  'hide':
+    prefix: 'hide'
+    body: 'hide ${1:object}'
+
+  'pause':
+    prefix: 'pause'
+    body: 'pause ${1:duration}'
+
+  'show fade':
+    prefix: 'sf'
+    body: 'show_fade "${1:color}" ${2:opacity} ${3:duration}'
+
+  'hide fade':
+    prefix: 'hf'
+    body: 'hide_fade ${1:duration}'
+
+  'show, wait and hide fade':
+    prefix: 'shf'
+    body: 'show_hide_fade "${1:color}" ${2:opacity} ${3:show_duration} ${4:wait_duration} ${5:hide_duration}'
+
+  'rotate':
+    prefix: 'rotate'
+    body: 'rotate ${1:object} ${2:rotate_to} ${3:duration}'
+
+  'set opacity':
+    prefix: 'opacity'
+    body: 'opacity ${1:object} ${2:new_opacity} ${3:duration}'
+
+  'play spine animation':
+    prefix: 'play'
+    body: 'play_anim ${1:object} ${2:animation_name}'
+
+  'scale':
+    prefix: 'scale'
+    body: 'scale ${1:object} (${2:scale_x}, ${3:scale_y}) ${4:duration}'
+
+  'Initialization':
+    prefix : 'init'
+    body : """
+      config
+        version 1
+        id $1
+        name seq$2
+        cost 1
+        image res/story_design/$3
+        triggers $4
+        position (0, 0)
+        campos (0, 0)
+        camzoom 5.6
+      end
+
+      define
+          char ${5:object_name}
+            name ${6:display_name}
+            sprite res/story_design/
+            default res/story_design/
+      end
+
+      setup
+      end
+
+      content
+      end
+
+      finish
+      end
+      """
