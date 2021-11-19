@@ -1,13 +1,11 @@
 {
   "name": "language-meow-script",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Syntax highlight and snippet for Meow Script",
   "keywords": [],
   "license": "MIT",
   "main": "./lib/language-meow-script",
-  "repository": {
-    "url": "https://github.com/Oggzie/language-meow-script"
-  },
+  "repository": {"https://github.com/Oggzie/language-meow-script"},
   "dependencies": {},
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
